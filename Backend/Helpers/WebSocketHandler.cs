@@ -3,7 +3,7 @@ using System.Net.WebSockets;
 using System.Text.Json;
 using System.Text;
 
-namespace Anonymous_Chat
+namespace Anonymous_Chat.Helpers
 {
     public class WebSocketHandler
     {

@@ -1,13 +1,14 @@
-﻿using Anonymous_Chat.Models;
+﻿using Anonymous_Chat.Handlers;
+using Anonymous_Chat.Models;
 using static Anonymous_Chat.Controllers.Chatting;
-using static Anonymous_Chat.SysMessageTypes;
+using static Anonymous_Chat.Helpers.SysMessageTypes;
 namespace Anonymous_Chat.Helpers
 {
     public class Actions
     {
         public async static Task Transfer_Message(string connectionString, string message, List<Models.File> files)
         {
-            var chat = activeChats.FirstOrDefault(c => c.Key == connectionString || c.Value == connectionString);
+            var chat = UserManager.GetChat(connectionString); 
             if (chat.Key == null)
                 return;
 
@@ -22,23 +23,23 @@ namespace Anonymous_Chat.Helpers
         }
         public async static Task Start_Talk(string connectionString, Profile profile)
         {
-            profiles[connectionString] = profile;
+            UserManager.SetProfile(connectionString, profile);
 
-            if (waitingClients.TryDequeue(out var otherConnectionString))
+            if (UserManager.DequeueWaitingUser(out var otherConnectionString))
             {
-                activeChats[connectionString] = otherConnectionString;
+                UserManager.AddChat(connectionString, otherConnectionString);
                 Console.WriteLine($"Paired: {connectionString} - {otherConnectionString}");
                 await WebSocketHandler.SendMessage(connectionString, new
                 {
                     type = Start,
                     response = "Pair found!",
-                    profile = profiles[otherConnectionString]
+                    profile = UserManager.GetProfile(otherConnectionString)
                 });
                 await WebSocketHandler.SendMessage(otherConnectionString, new
                 {
                     type = Start,
                     response = "Pair found!",
-                    profile,
+                    profile
 
                 });
                 return;
@@ -46,7 +47,7 @@ namespace Anonymous_Chat.Helpers
             else
             {
                 Console.WriteLine($"Waiting: {connectionString}");
-                waitingClients.Enqueue(connectionString);
+                UserManager.AddUser(connectionString);
                 await WebSocketHandler.SendMessage(connectionString, new
                 {
                     type = Waiting,
@@ -57,7 +58,7 @@ namespace Anonymous_Chat.Helpers
 
         public async static Task Stop_Talking(string connectionString)
         {
-            var chat = activeChats.FirstOrDefault(c => c.Key == connectionString || c.Value == connectionString);
+            var chat = UserManager.GetChat(connectionString);
             if (chat.Key == null)
                 return;
 
@@ -72,7 +73,7 @@ namespace Anonymous_Chat.Helpers
                 type = Stop,
                 content = "Talk ended"
             });
-            activeChats.Remove(chat.Key, out _);
+            UserManager.RemoveChat(chat.Key);
         }
     }
 }

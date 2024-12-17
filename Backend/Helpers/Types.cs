@@ -1,5 +1,4 @@
-﻿
-namespace Anonymous_Chat
+﻿namespace Anonymous_Chat.Helpers
 {
     enum SysMessageTypes
     {
@@ -8,5 +7,11 @@ namespace Anonymous_Chat
         Next,
         Waiting,
         Stop,
+    }
+    enum ParsingResult
+    {
+        Last,
+        Error,
+        Partial,
     }
 }
