@@ -9,7 +9,6 @@ namespace Anonymous_Chat.Handlers
         public static async Task HandleConnectionAsync(WebSocket webSocket)
         {
             var connectionId = $"user-{Interlocked.Increment(ref connections)}";
-            string partialJson = string.Empty;
             try
             {
                 Console.WriteLine($"Connection established: {connectionId}");
@@ -18,10 +17,7 @@ namespace Anonymous_Chat.Handlers
                 {
                     try
                     {
-                        var result = MessageHandler.HandlePartialMessage(partialJson, message);
-                        partialJson = result.RemainingJson;
-                        if (result.IsComplete)
-                            await MessageHandler.ProcessMessageAsync(result.CompleteJson, connectionId);
+                        await MessageHandler.ProcessMessageAsync(message, connectionId);
                     }
                     catch (JsonException jsonEx)
                     {

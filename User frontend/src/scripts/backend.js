@@ -25,7 +25,7 @@ const start = () => {
         message(messageTypes.System, "You're connected! Press on three dots to find pair!!");
     });
     socket.addEventListener("message", (event) => {
-        console.log(`[ MESSAGE ] - ${event.data}`)
+        console.log('GELDI')
         parse(event.data)
     });
     socket.addEventListener("close", (event) => {

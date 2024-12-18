@@ -27,6 +27,7 @@ namespace Anonymous_Chat.Helpers
         {
             AddConnection(connectionId, webSocket);
             var buffer = new byte[1024 * 4];
+            var messageBuilder = new StringBuilder();
 
             while (webSocket.State == WebSocketState.Open)
             {
@@ -37,7 +38,13 @@ namespace Anonymous_Chat.Helpers
                     await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Closed by server", CancellationToken.None);
                     break;
                 }
-                yield return Encoding.UTF8.GetString(buffer, 0, result.Count);
+                messageBuilder.Append(Encoding.UTF8.GetString(buffer, 0, result.Count));
+
+                if (result.EndOfMessage)
+                {
+                    yield return messageBuilder.ToString();
+                    messageBuilder.Clear();
+                }
             }
 
             RemoveConnection(connectionId);
