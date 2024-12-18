@@ -29,6 +29,10 @@ This is a real-time chat application built with an **ASP.NET** backend and a **V
 - User-friendly design for smooth navigation.
 - Fast and responsive experience with the Vue.js frontend.
 
+
+### Admin Panel
+- All users and pairs are visible here
+- No authentification yet
 ---
 
 ## Technologies Used
