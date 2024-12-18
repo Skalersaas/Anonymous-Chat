@@ -20,6 +20,8 @@ export { focus };
 
 
 <template>
+<Attachments v-if="files.length != 0"/>
+
 <form 
   @submit.prevent="sendMessage()"
   class="border-t border-gray-300 p-4 flex flex-col">
@@ -39,6 +41,7 @@ export { focus };
 	<button
 		type="button"
 	  	@click="showAttachments = true"
+		:disabled="state != states.paired"
 		class="text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 absolute right-12">
 		<i class="fa-solid fa-paperclip text-[#dedede]"></i>
 	<!-- {{ files.length == 0 ? <FontAwesomeIcon :icon="byPrefixAndName.fas['house']" /> : files.length + "file(s)"}} -->
@@ -47,6 +50,7 @@ export { focus };
 
 	<button
 		type="submit"
+		:disabled="state != states.paired"
 		class="bg-blue-500 text-white w-9 h-9 rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
 		<i class="fa-solid fa-location-arrow fa-rotate-by ms-[-3px]" style="--fa-rotate-angle: 45deg;"></i>
     </button>
@@ -65,4 +69,5 @@ import { actionCodes, socket, state, states } from '@/scripts/backend';
 import { message, messageTypes } from '@/App.vue';
 import FileAttachments, { files, showAttachments } from './FileAttachments.vue';
 import { send } from '@/scripts/sender';
+import Attachments from './AttachmentsPreview.vue';
 </script>

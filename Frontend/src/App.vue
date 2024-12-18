@@ -57,7 +57,7 @@ export { messageTypes, profileReady, resetCompanion, setCompanion, message}
 	<!-- Chat Messages -->
 	<div
 		id="messageContainer" 
-		class="flex-1 overflow-y-auto p-4 space-y-4 scroll-smooth no-scrollbar">
+		class="flex-1 overflow-y-auto p-4 space-y-4 scroll-smooth">
 		<Message
 			v-for="m in messages"
 			:-MessageType="m.type"
@@ -82,7 +82,6 @@ import Profile from "./components/Profile.vue";
 import { ref } from "vue";
 import { focus } from "./components/Input.vue";
 import Companion from "./components/Companion.vue";
-import { state, states } from "./scripts/backend";
 import Test from "./components/Test.vue";
 
 </script>

@@ -25,7 +25,7 @@ const handleFileUpload = (event) =>
 		fileReader.readAsDataURL(file);
 	});
 }
-export { files, showAttachments };
+export { files, showAttachments, isImage, isVideo, removeFile };
 </script>
 <template>
 	<div v-if="showAttachments" class="absolute inset-0 bg-gray-200 bg-opacity-50 backdrop-blur-md flex flex-col justify-center items-center z-10">
