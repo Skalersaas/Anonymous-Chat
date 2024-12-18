@@ -65,8 +65,8 @@ export { focus };
 
 <script setup>
 import { ref } from 'vue';
-import { actionCodes, socket, state, states } from '@/scripts/backend';
-import { message, messageTypes } from '@/App.vue';
+import { actionCodes, state, states } from '@/scripts/backend';
+import { message, messageTypes } from '@/views/ChatView.vue';
 import FileAttachments, { files, showAttachments } from './FileAttachments.vue';
 import { send } from '@/scripts/sender';
 import Attachments from './AttachmentsPreview.vue';

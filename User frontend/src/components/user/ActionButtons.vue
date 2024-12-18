@@ -108,8 +108,8 @@ const hoverStatusEnter = (id) => {
 <script setup>
 import { state, states, actionCodes } from '@/scripts/backend';
 import { send } from '@/scripts/sender';
-import { profile } from "@/components/Profile.vue";
-import { profileReady } from '@/App.vue';
+import { profile } from "@/components/user/Profile.vue";
+import { profileReady } from '@/views/ChatView.vue';
 import { ref } from 'vue';
 </script>
 <style>

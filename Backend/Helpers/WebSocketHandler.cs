@@ -8,6 +8,7 @@ namespace Anonymous_Chat.Helpers
     public class WebSocketHandler
     {
         private static readonly ConcurrentDictionary<string, WebSocket> _connections = new();
+    
         public static bool AddConnection(string connectionId, WebSocket webSocket)
             => _connections.TryAdd(connectionId, webSocket);
         public static bool RemoveConnection(string connectionId)

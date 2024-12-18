@@ -76,7 +76,7 @@ export { profile };
 </template>
 
 <script setup>
-import { profileReady } from '@/App.vue';
+import { profileReady } from '@/views/ChatView.vue';
 import { onMounted, ref } from 'vue';
 import { state, states } from '@/scripts/backend';
 

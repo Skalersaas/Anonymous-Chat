@@ -20,10 +20,13 @@ const message = (type, content, files) => {
 		}
 	);
 	const container = document.getElementById("messageContainer");
-	setTimeout(() => {
-        container.scrollTop = container.scrollHeight;
-    }, 1);
-	focus();
+	if (container)
+	{
+		setTimeout(() => {
+        	container.scrollTop = container.scrollHeight;
+		}, 1);
+		focus();
+	}
 }
 
 const setCompanion = (comp) => {
@@ -37,9 +40,7 @@ export { messageTypes, profileReady, resetCompanion, setCompanion, message}
 
 
 <template>
-<Test v-if="false"/>
-
-<body v-else class="bg-gray-100 h-screen flex justify-center items-center relative">
+<body class="bg-gray-100 h-screen flex justify-center items-center relative">
 	<div v-if="!profileReady" class="absolute inset-0 bg-gray-200 bg-opacity-50 backdrop-blur-md flex justify-center items-center z-10">
 		<Profile/>
 	</div>
@@ -75,13 +76,10 @@ export { messageTypes, profileReady, resetCompanion, setCompanion, message}
 </template>
 
 <script setup>
-import Input from "./components/Input.vue";
-import Message from "./components/Message.vue";
-import ActionButtons from "./components/ActionButtons.vue";
-import Profile from "./components/Profile.vue";
+import Message from "@/components/user/Message.vue";
+import ActionButtons from "@/components/user/ActionButtons.vue";
+import Profile from "@/components/user/Profile.vue";
 import { ref } from "vue";
-import { focus } from "./components/Input.vue";
-import Companion from "./components/Companion.vue";
-import Test from "./components/Test.vue";
-
+import Input, { focus } from "@/components/user/Input.vue";
+import Companion from "@/components/user/Companion.vue";
 </script>

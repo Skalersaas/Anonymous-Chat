@@ -8,7 +8,13 @@ namespace Anonymous_Chat.Handlers
     {
         private static readonly ConcurrentQueue<string> waitingClients = [];
         private static readonly ConcurrentDictionary<string, Profile> profiles = [];
-        private static readonly ConcurrentDictionary<string, string> activeChats = [];
+        public static readonly ConcurrentDictionary<string, string> activeChats = [];
+
+        public static List<string> GetUsers()
+        {
+            return [.. profiles.Keys];
+        }
+
         public static async void RemoveUser(string connectionId)
         {
             profiles.Remove(connectionId, out _);
@@ -19,15 +25,19 @@ namespace Anonymous_Chat.Handlers
             await Stop_Talking(connectionId);
             Console.WriteLine($"Connection closed: {connectionId}");
         }
-        public static void AddUser(string connectionId, Profile profile = null)
+        public static void AddUser(string connectionId, Profile? profile = null)
         {
             waitingClients.Enqueue(connectionId);
             if (profile != null)
                 profiles[connectionId] = profile;
         }
-        public static bool DequeueWaitingUser(out string connectionString)
+        public static bool DequeueWaitingUser(out string? connectionString)
         {
             return waitingClients.TryDequeue(out connectionString);
+        }
+        public static bool GetWaitingUser(out string? connectionString)
+        {
+            return waitingClients.TryPeek(out connectionString);
         }
         public static Profile GetProfile(string connectionId)
         {

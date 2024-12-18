@@ -1,5 +1,5 @@
 <script setup>
-import { messageTypes } from '@/App.vue';
+import { messageTypes } from '@/views/ChatView.vue';
 
 defineProps({
     MessageType: Number,

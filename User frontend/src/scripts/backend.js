@@ -1,7 +1,7 @@
-import { message, messageTypes, resetCompanion, setCompanion } from "@/App.vue";
+import { message, messageTypes, resetCompanion, setCompanion } from "@/views/ChatView.vue";
 import { ref } from "vue";
-const api = "wss://localhost:7131/";
-const socket = new WebSocket(api + "chatting/connect");
+const api = "://localhost:7131/";
+const socket = new WebSocket('wss' + api + "chatting/connect");
 
 const actionCodes = {
     Transfer: 0,
@@ -49,4 +49,20 @@ window.addEventListener("unload", () => {
     }
 });
 
-export { socket, actionCodes, state, states, start }
+
+const getAdminData = async () => {
+    const request = await fetch('https' + api + 'admin/data', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    if (request.ok)
+    {
+        const json = await request.json();
+        return json;
+    }
+}
+
+
+export { socket, actionCodes, state, states, start, getAdminData }

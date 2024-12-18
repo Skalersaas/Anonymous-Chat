@@ -5,7 +5,7 @@ namespace Anonymous_Chat.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class Chatting : ControllerBase
+    public class ChattingController : ControllerBase
     {
         [Route("connect")]
         public async Task Connect()
