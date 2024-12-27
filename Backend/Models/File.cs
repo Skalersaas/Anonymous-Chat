@@ -4,8 +4,8 @@ namespace Anonymous_Chat.Models
 {
     public class File
     {
-        [JsonPropertyName("preview")]
-        public string Preview { get; set; } = string.Empty;
+        [JsonPropertyName("fileName")]
+        public string Name { get; set; } = string.Empty;
         [JsonPropertyName("type")]
         public string Type { get; set; } = string.Empty;
     }

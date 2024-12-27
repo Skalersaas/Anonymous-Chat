@@ -11,12 +11,20 @@ const messageTypes = {
     Outgoing: 1,
 	System: 2,
 }
-const message = (type, content, files) => {
+const message = async (type, content, files) => {
+	let media = [];
+	if (files != null && files.length != 0)
+	{
+		if (type == messageTypes.Incoming)
+			media = await downloadFiles(files);
+		else 
+			media = files;
+	}
 	messages.value.push(
 		{
 			type: type,
 			content: content,
-			mediaFiles: files !='[]' ? files: []
+			mediaFiles: media
 		}
 	);
 	const container = document.getElementById("messageContainer");
@@ -82,4 +90,5 @@ import Profile from "@/components/user/Profile.vue";
 import { ref } from "vue";
 import Input, { focus } from "@/components/user/Input.vue";
 import Companion from "@/components/user/Companion.vue";
+import { downloadFiles } from "@/scripts/backend";
 </script>

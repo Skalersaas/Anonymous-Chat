@@ -20,6 +20,7 @@ const handleFileUpload = (event) =>
 			files.value.push({
 				type: file.type,
 				preview: e.target.result,
+				content: URL.createObjectURL(file),
 			});
 		};
 		fileReader.readAsDataURL(file);

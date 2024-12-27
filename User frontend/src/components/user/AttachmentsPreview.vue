@@ -34,5 +34,4 @@
 <script setup>
 import { files } from './FileAttachments.vue';
 import { isVideo, isImage, removeFile } from './FileAttachments.vue';
-console.log(files.value.length)
 </script>

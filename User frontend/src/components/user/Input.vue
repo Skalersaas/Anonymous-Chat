@@ -1,10 +1,10 @@
 <script>
 const content = ref("");
 const sendMessage = async () => {
-	const msg = {
+	const msg =  {
 		code: actionCodes.Transfer,
 		content: content.value,
-		files: files.value
+		files: files.value !== '[]' ? await uploadFiles(files.value) : [],
 	}
 	send(msg);
 	message(messageTypes.Outgoing, content.value, files.value);
@@ -65,7 +65,7 @@ export { focus };
 
 <script setup>
 import { ref } from 'vue';
-import { actionCodes, state, states } from '@/scripts/backend';
+import { actionCodes, state, states, uploadFiles } from '@/scripts/backend';
 import { message, messageTypes } from '@/views/ChatView.vue';
 import FileAttachments, { files, showAttachments } from './FileAttachments.vue';
 import { send } from '@/scripts/sender';
