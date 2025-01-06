@@ -11,3 +11,90 @@
         scrollbar-width: none; 
   }
 }
+
+[data-theme="theme-1"] { 
+    --color-primary:#39352B;  
+    --color-secondary: #dcd5c0; 
+    --color-background:#8a9455; 
+    --color-companion: #615A4E;  
+    --color-attachments:#dcd5c0;  
+    --color-send-bg:#615a4e;  
+    --color-send: #FFFFFF;  
+    --color-input-enabled: #eae3d0;  
+    --color-input-border: #615a4e; 
+ 
+    --color-text-primary: #E8E3CA;  
+    --color-text-input:#39352B;  
+     
+    --color-msg-bg-in: #FFFFFF;  
+    --color-msg-bg-out: #E5DFCF;  
+    --color-msg-bg-sys:#DCD5C0;  
+    --color-msg-border-sys:#615A4E;  
+     
+    --color-msg-text-in: #000000;  
+    --color-msg-text-out: #000000;  
+    --color-msg-text-sys: #000000; 
+ 
+    --color-action-profile: #39352b; 
+ 
+    --color-profile-bg: #cece93; 
+    --color-profile-submit: #916b3a; 
+}
+[data-theme="theme-2"] { 
+    --color-primary:#453c2b;  
+    --color-secondary: #ded0b0; 
+    --color-background:#a4a4a2; 
+    --color-companion: #786d56;  
+    --color-attachments:#ded0b0;  
+    --color-send-bg:#786d56;  
+    --color-send: #FFFFFF;  
+    --color-input-enabled: #f9e9ca;  
+    --color-input-border: #786d56; 
+ 
+    --color-text-primary: #FFFFFF;  
+    --color-text-input:#241f15;  
+     
+    --color-msg-bg-in: #FFFFFF;  
+    --color-msg-bg-out: #faefd3;  
+    --color-msg-bg-sys:#f9f0dd;  
+    --color-msg-border-sys:#786d56;  
+     
+    --color-msg-text-in: #000000;  
+    --color-msg-text-out: #000000;  
+    --color-msg-text-sys: #000000; 
+ 
+    --color-action-profile: #453c2b; 
+ 
+ 
+    --color-profile-bg: #bcb8b5; 
+    --color-profile-submit: #6b624f; 
+}
+[data-theme="theme-3"] { 
+    --color-primary:#c2b18f;  
+    --color-secondary: #c2b18f; 
+    --color-background:#7c8397; 
+    --color-companion: #a49175;  
+    --color-attachments:#C2B18F;  
+    --color-send-bg:#a49175;  
+    --color-send: #FFFFFF;  
+    --color-input-enabled: #efdab6;  
+    --color-input-border: #A49175; 
+ 
+    --color-text-primary: #FFFFFF;  
+    --color-text-input:#39352b;  
+     
+    --color-msg-bg-in: #FFFFFF;  
+    --color-msg-bg-out: #ffe9cc;  
+    --color-msg-bg-sys:#FFFFFF;  
+    --color-msg-border-sys:#A49175;  
+     
+    --color-msg-text-in: #000000;  
+    --color-msg-text-out: #000000;  
+    --color-msg-text-sys: #000000; 
+ 
+    --color-action-profile: #C2B18F; 
+ 
+ 
+    --color-profile-bg: #a2acbd; 
+    --color-profile-submit: #eaae68; 
+}

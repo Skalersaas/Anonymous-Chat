@@ -19,7 +19,7 @@ namespace Anonymous_Chat.Controllers
                 var user = new User
                 {
                     id = userId,
-                    pseudonym = prof.Pseudonym,
+                    pseudonym = prof.Pseudonym, 
                     gender = prof.Gender
                 };
 

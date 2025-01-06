@@ -1,32 +1,5 @@
 <script>
-const files = ref([]);
-const showAttachments = ref(false);
-const isImage = (file) => {
-return file.type.startsWith("image/");
-}
-const isVideo = (file) => {
-	return file.type.startsWith("video/");
-}
-const removeFile = (index) => {
-	files.value.splice(index, 1);
-}
 
-const handleFileUpload = (event) =>
-{
-	const selectedFiles = Array.from(event.target.files);
-	selectedFiles.forEach((file) => {
-		const fileReader = new FileReader();
-		fileReader.onload = (e) => {
-			files.value.push({
-				type: file.type,
-				preview: e.target.result,
-				content: URL.createObjectURL(file),
-			});
-		};
-		fileReader.readAsDataURL(file);
-	});
-}
-export { files, showAttachments, isImage, isVideo, removeFile };
 </script>
 <template>
 	<div v-if="showAttachments" class="absolute inset-0 bg-gray-200 bg-opacity-50 backdrop-blur-md flex flex-col justify-center items-center z-10">

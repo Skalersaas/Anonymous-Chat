@@ -15,16 +15,20 @@ const sendMessage = async () => {
 const focus = () => {
 	document.getElementById("inpu").focus();
 }
-export { focus };
+
+const disabled = () =>{
+	return state.value != states.paired;
+}
+export { disabled, focus };
 </script>
 
 
 <template>
-<Attachments v-if="files.length != 0"/>
+<AttachmentsPreview v-if="files.length != 0"/>
 
 <form 
   @submit.prevent="sendMessage()"
-  class="border-t border-gray-300 p-4 flex flex-col">
+  class="border-t border-gray-300 p-4 flex flex-col bg-secondary">
   
   <!-- Text Input -->
 <div class="flex items-center space-x-2 relative">
@@ -33,32 +37,24 @@ export { focus };
         :required="files.length == 0"
         type="text" 
         v-model="content"
-        :disabled="state != states.paired"
-        placeholder="Type your message..." 
-		class="flex-1 rounded-2xl px-4 pr-12 py-2 bg-[#f9f9f9] focus:outline-none focus:ring-2 focus:ring-blue-500">
+        :disabled="disabled()"
+        :placeholder="disabled() ? 'Find pair first!!' : 'Type your message...'" 
+		class="text-textInput border border-inputBorder  flex-1 rounded-2xl px-4 pr-12 py-2 focus:outline-none
+	    bg-inpuEnabled">
 
+	<FileInput/>
 
-	<button
-		type="button"
-	  	@click="showAttachments = true"
-		:disabled="state != states.paired"
-		class="text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 absolute right-12">
-		<i class="fa-solid fa-paperclip text-[#dedede]"></i>
-	<!-- {{ files.length == 0 ? <FontAwesomeIcon :icon="byPrefixAndName.fas['house']" /> : files.length + "file(s)"}} -->
-    </button>
 
 
 	<button
 		type="submit"
-		:disabled="state != states.paired"
-		class="bg-blue-500 text-white w-9 h-9 rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-		<i class="fa-solid fa-location-arrow fa-rotate-by ms-[-3px]" style="--fa-rotate-angle: 45deg;"></i>
+		:disabled="disabled()"
+		class="bg-sendBg text-white w-9 h-9 rounded-full enabled:hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+		<i class="fa-solid fa-location-arrow fa-rotate-by ms-[-3px] rotate-45"></i>
     </button>
 
 
 </div>
-  <!-- File Previews -->
-<FileAttachments v-if="showAttachments"/>
 </form>
 
 </template>
@@ -67,7 +63,7 @@ export { focus };
 import { ref } from 'vue';
 import { actionCodes, state, states, uploadFiles } from '@/scripts/backend';
 import { message, messageTypes } from '@/views/ChatView.vue';
-import FileAttachments, { files, showAttachments } from './FileAttachments.vue';
 import { send } from '@/scripts/sender';
-import Attachments from './AttachmentsPreview.vue';
+import AttachmentsPreview from './AttachmentsPreview.vue';
+import FileInput, { files }  from './FileInput.vue';
 </script>

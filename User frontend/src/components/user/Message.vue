@@ -1,26 +1,35 @@
 <script setup>
 import { messageTypes } from '@/views/ChatView.vue';
 
-defineProps({
+const props = defineProps({
     MessageType: Number,
     Content: String, // For text messages
     MediaFiles: Array, // Array of File objects
 });
+const getPosition = () => {
+    if (props.MessageType === messageTypes.Outgoing)
+        return 'justify-end';
+    else if (props.MessageType === messageTypes.System)
+        return 'justify-center'
+}
+const getColors = () => {
+    if (props.MessageType === messageTypes.Incoming)
+        return 'bg-msgBgIn rounded-tl-3xl rounded-lg text-msgTextIn';
+    else if (props.MessageType === messageTypes.Outgoing)
+        return 'bg-msgBgOut rounded-tr-3xl rounded-lg text-msgTextOut text-right';
+
+    return 'bg-msgBgSys rounded-lg text-msgTextSys text-center border-4 border-msgBorderSys';
+}
 </script>
 
 <template>
 <div 
     :class="[ 
-        'flex items-start',
-        MessageType === messageTypes.Outgoing ? 'justify-end' : 
-        MessageType === messageTypes.System  || MessageType === messageTypes.Profile ? 'justify-center' : ''
+        'flex items-start', getPosition()
     ]">
     <div
         :class="[ 
-            'px-4 py-2 rounded-lg max-w-xs space-y-2',
-            MessageType === messageTypes.Incoming ? 'bg-gray-200 text-gray-800' :
-            MessageType === messageTypes.Outgoing ? 'bg-blue-500 text-white text-right' :
-            'bg-green-500 text-white text-center' 
+            'px-4 py-2 max-w-xs space-y-2', getColors()
         ]">
         <!-- Text Content -->
         <template v-if="Content">

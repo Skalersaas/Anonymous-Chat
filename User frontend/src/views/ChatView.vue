@@ -1,6 +1,7 @@
 <script>
 const profileReady = ref(false);
 const messages = ref([]);
+
 const companion = ref({
 	gender: -1,
 	pseudonym: ''
@@ -52,13 +53,13 @@ export { messageTypes, profileReady, resetCompanion, setCompanion, message}
 	<div v-if="!profileReady" class="absolute inset-0 bg-gray-200 bg-opacity-50 backdrop-blur-md flex justify-center items-center z-10">
 		<Profile/>
 	</div>
-	<div class="bg-white shadow-md rounded-lg w-full max-w-lg flex flex-col h-[90vh] relative">
+	<div class="bg-background shadow-md rounded-lg w-full max-w-lg flex flex-col h-[90vh] relative">
 	<!-- Header -->
-	<div class="bg-blue-500 text-white text-center p-4 rounded-t-lg">
-		<h1 class="text-lg font-semibold">Anonymous Chat</h1>
+	<div class="bg-primary text-white text-center p-4 rounded-t-lg rounded-b-[2rem]">
+		<h1 class="text-lg font-semibold">ANONYMOUS CHAT</h1>
 	</div>
 
-	<div class="border-b border-gray-300 p-2 flex items-center justify-center relative">
+	<div class="p-2 bg-companion flex items-center justify-center relative w-[90%] m-auto rounded-b-3xl">
 		<Companion :-gender="companion.gender" :-pseudonym="companion.pseudonym"/>
 		<ActionButtons/>
 	</div>
@@ -74,9 +75,6 @@ export { messageTypes, profileReady, resetCompanion, setCompanion, message}
 			:-media-files="m.mediaFiles ?? []"
 			/>
 	</div>
-	<!-- Actions -->
-		<!-- <ActionButtons/> -->
-	
 	<!-- Message Input -->
 		<Input/>
 	</div>

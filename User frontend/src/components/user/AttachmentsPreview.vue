@@ -1,5 +1,5 @@
 <template>
-<div class="border-t border-gray-300 p-2">
+<div class="border-t border-gray-300 p-2 bg-attachments">
     <div class="flex gap-4 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 w-full">
         <div 
             v-for="(file, index) in files" 
@@ -32,6 +32,5 @@
 </template>
 
 <script setup>
-import { files } from './FileAttachments.vue';
-import { isVideo, isImage, removeFile } from './FileAttachments.vue';
+import { files, isImage, isVideo, removeFile } from './FileInput.vue';
 </script>

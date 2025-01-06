@@ -41,7 +41,7 @@ const hoverStatusEnter = (id) => {
 
 <template>
 <div id="menu" class="absolute right-5 cursor-pointer text-lg" @click="toggleMenu()">
-    <i class="fa-solid fa-ellipsis-vertical text-[#787878]"></i>
+    <i class="fa-solid fa-ellipsis-vertical text-white"></i>
 </div>
 
 <div v-if="menuOpen" class="absolute flex flex-col right-2 top-14 gap-2">
@@ -57,7 +57,7 @@ const hoverStatusEnter = (id) => {
         @mouseenter="hoverStatusEnter(1)"
         @mouseleave="hoveredId = 0"
         :class="[
-            'actionButton border border-[#F5DEB3] text-[#F5DEB3] hover:bg-[#F5DEB3] hover:text-white',
+            'actionButton border border-actionProfile text-actionProfile hover:bg-actionProfile hover:text-white',
             state === states.paired || state === states.waiting
             ? 'disabled' : ''
         ]">
