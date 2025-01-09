@@ -16,7 +16,7 @@ namespace Anonymous_Chat
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowLocalhost",
-                    policy => policy.WithOrigins("https://anonymous-chat-six.vercel.app/")  // Add the origin of your frontend
+                    policy => policy.WithOrigins("https://anonymous-chat-six.vercel.app")  // Add the origin of your frontend
                                     .AllowAnyMethod()
                                     .AllowAnyHeader());
             });
