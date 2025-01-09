@@ -1,7 +1,6 @@
 import { message, messageTypes, resetCompanion, setCompanion } from "@/views/ChatView.vue";
 import { ref } from "vue";
-
-const api = "://localhost:7131/";
+const api = "://anonymous-chat-q6ww.onrender.com/";
 const socket = new WebSocket('wss' + api + "chatting/connect");
 
 const actionCodes = {
