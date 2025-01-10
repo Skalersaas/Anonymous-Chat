@@ -7,9 +7,9 @@ const sendMessage = async () => {
 	}
 	message(messageTypes.Outgoing, content.value, files.value);
 	content.value = "";
-	files.value = "";
+	files.value = [];
 
-	send(createMsg(tmp));
+	send(await createMsg(tmp));
 	focus();
 }
 const createMsg = async (tmp) => {
