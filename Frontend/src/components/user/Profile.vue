@@ -1,5 +1,5 @@
 <script>
-const gender = ref(0);
+const gender = ref("");
 const genders = {
 	male: 1,
 	female: 2,
@@ -43,7 +43,7 @@ export { profile };
 		  id="pseudonym"
 		  name="pseudonym"
 		  class="block w-full rounded-lg border border-gray-300 py-2 px-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 sm:text-sm"
-		  placeholder="Enter your pseudonym"
+		  placeholder="Enter your nickname"
 		  required
 		/>
 	  </div>
@@ -58,7 +58,7 @@ export { profile };
 		  class="block w-full rounded-lg border border-gray-300 py-2 px-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 sm:text-sm"
 		  required
 		>
-		  <option :value="0" disabled selected="true">Select your gender</option>
+		  <option value="" disabled selected="true">Select your gender</option>
 		  <option :value="genders.male">Male</option>
 		  <option :value="genders.female">Female</option>
 		  <option :value="genders.other">Other</option>

@@ -1,16 +1,23 @@
 <script>
 const content = ref("");
 const sendMessage = async () => {
-	const msg =  {
-		code: actionCodes.Transfer,
+	const tmp = {
 		content: content.value,
-		files: files.value !== '[]' ? await uploadFiles(files.value) : [],
+		files: files.value
 	}
-	send(msg);
 	message(messageTypes.Outgoing, content.value, files.value);
 	content.value = "";
-	files.value = [];
+	files.value = "";
+
+	send(createMsg(tmp));
 	focus();
+}
+const createMsg = async (tmp) => {
+	const msg =  {
+		code: actionCodes.Transfer,
+		content: tmp.content,
+		files: tmp.files !== '[]' ? await uploadFiles(tmp.files) : [],
+	}
 }
 const focus = () => {
 	document.getElementById("inpu").focus();
