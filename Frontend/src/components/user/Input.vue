@@ -18,6 +18,7 @@ const createMsg = async (tmp) => {
 		content: tmp.content,
 		files: tmp.files !== '[]' ? await uploadFiles(tmp.files) : [],
 	}
+	return msg;
 }
 const focus = () => {
 	document.getElementById("inpu").focus();
